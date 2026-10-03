@@ -17,6 +17,7 @@ def main():
     x_test = np.load('data/raw/x_test.npy')
     y_test = np.load('data/raw/y_test.npy')
     
+    # Resolved normalization approach (combining minmax scaling with epsilon)
     x_train = x_train.astype('float32') / 255.0 + 1e-7
     x_test = x_test.astype('float32') / 255.0 + 1e-7
     
@@ -35,4 +36,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
