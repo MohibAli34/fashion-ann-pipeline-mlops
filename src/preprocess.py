@@ -18,8 +18,8 @@ def main():
     y_test = np.load('data/raw/y_test.npy')
     
     # Resolved normalization approach (combining minmax scaling with epsilon)
-    x_train = x_train.astype('float32') / 255.0 + 1e-7
-    x_test = x_test.astype('float32') / 255.0 + 1e-7
+    x_train = x_train.astype('float32') / 255.0 - 0.5
+    x_test = x_test.astype('float32') / 255.0 - 0.5
     
     x_train, x_val, y_train, y_val = train_test_split(
         x_train, y_train, test_size=test_size, random_state=seed
