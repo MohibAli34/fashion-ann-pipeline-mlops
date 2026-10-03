@@ -1,9 +1,8 @@
 import json
 import numpy as np
 import tensorflow as tf
-from sklearn.metrics import confusion_matrix
+from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
 import matplotlib.pyplot as plt
-import seaborn as sns
 
 def main():
     x_test = np.load('data/processed/x_test.npy')
@@ -21,17 +20,13 @@ def main():
     with open('metrics.json', 'w') as f:
         json.dump(metrics, f, indent=4)
         
-    # Predict and create confusion matrix
     y_pred_probs = model.predict(x_test)
     y_pred = np.argmax(y_pred_probs, axis=1)
     
     cm = confusion_matrix(y_test, y_pred)
-    
-    plt.figure(figsize=(10,8))
-    sns.heatmap(cm, annot=True, fmt='d', cmap='Blues')
+    disp = ConfusionMatrixDisplay(confusion_matrix=cm)
+    disp.plot(cmap=plt.cm.Blues)
     plt.title('Confusion Matrix')
-    plt.ylabel('True Label')
-    plt.xlabel('Predicted Label')
     plt.savefig('models/confusion_matrix.png')
     
     print(f"Test Accuracy: {accuracy:.4f}")
