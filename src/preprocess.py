@@ -17,7 +17,7 @@ def main():
     x_test = np.load('data/raw/x_test.npy')
     y_test = np.load('data/raw/y_test.npy')
     
-    # Resolved normalization approach (combining minmax scaling with epsilon)
+    # Resolved conflict: We keep the main branch's logic (- 0.1)
     x_train = x_train.astype('float32') / 255.0 - 0.1
     x_test = x_test.astype('float32') / 255.0 - 0.1
     
